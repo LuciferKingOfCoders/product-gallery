@@ -1,0 +1,161 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+html{
+    height: 100%;
+}
+
+.nav{
+  margin-top: 8px;
+  list-style:none;
+  display: flex;
+justify-content: space-between;
+}
+a:hover{
+  color: rgb(202, 190, 17);
+cursor: pointer;
+border-bottom: 1px solid white;
+}
+
+body{
+	font-family: 'Open Sans', sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+.header{
+    background-color: rgb(4, 20, 82);
+    padding: 5px;
+  overflow: hidden; 
+  /* display: flex; */
+  justify-content: center;
+ 
+  font-size: larger;
+ 
+}
+
+.header-elements{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+    list-style: none;
+    font-weight: 500;
+    margin-top: 8px;
+}
+
+
+.header-elements li a:hover{
+
+color: rgb(202, 190, 17);
+cursor: pointer;
+}
+a{
+    text-decoration: none;
+    color: #fff;
+}
+
+
+footer{
+    
+    text-align: center;
+    text-transform: uppercase;
+    padding-top: 30px;
+    margin-top: auto;
+}
+
+
+
+.footer-copyright{
+  background-color: rgb(4, 20, 82);
+    color: rgb(255, 254, 254);
+    padding: 10px;
+    margin-top: 30px;
+    text-transform: capitalize;
+}
+
+.footer-copyright p{
+    margin-bottom: 0px;
+}
+
+.section{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    padding: 10px;
+    
+}
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  td, th {
+    text-align: left;
+    padding: 8px;
+  }
+  
+  tbody tr:hover {
+    background-color: #65c8f3;
+    }
+
+   
+   
+
+ .home-title{
+  font-size: 50px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+ }
+
+.card-style{
+  width: 300px;
+}
+
+  .add-form{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 50px;
+
+  }
+  h3{
+    padding: 10px;
+    background-color: rgb(66, 93, 199);
+    font-weight: bolder;
+    
+  }
+  label{
+    font-weight: bold;
+  }
+  .sub-btn{
+    background-color: #0b6291;
+    padding: 5px;
+    border: 1px solid #76c2cc;
+    border-radius: 5px;
+    color: white;
+    font-size: medium;
+    font-weight: bold;
+  }
+
+  .sub-btn:hover{
+    background-color: #16033a;
+  }
+  .back a:hover{
+color: #76c2cc;
+  }
+
+.login-form{
+  display: flex;
+  justify-content: center;
+  padding: 50px;
+  
+  }
+
+  form{
+    border: 1px solid gray;
+    padding: 10px;
+    box-shadow: 1px 5px 5px gray;
+  }
