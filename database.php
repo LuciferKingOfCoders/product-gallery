@@ -38,7 +38,7 @@ class database
       while ($row = $res->fetch_assoc()) {
         
         if (password_verify($password, $row["password"])) {
-        
+          $_SESSION["name"] = $row["name"];
           header("location:index.php");
         } else {
           echo '<script>alert("wrong user details")</script>';
@@ -156,6 +156,119 @@ class database
   }
 
 
+// Insert product data into product table
+public function insertProduct($post)
+{
 
+  $img=$_FILES['file']['name'];
+  $tempName=$_FILES['file']['tmp_name'];
+  $folder="./image/".$img;
+  $productImage=$img;
+
+  $title = $this->con->real_escape_string($_POST['title']);
+  $des = $this->con->real_escape_string($_POST['des']);
+  $price = $this->con->real_escape_string($_POST['price']);
+  $query = "INSERT INTO products(title,des,img,price) VALUES('$title','$des','$productImage',' $price')";
+ 
+  $sqlQuery = $this->con->query($query);
+ 
+ 
+  if ($sqlQuery == true) {
+    header("Location:index.php");
+    move_uploaded_file($tempName, $folder);
+  } else {
+    echo "failed try again!";
+  }
+}
+
+  // Fetch Products data
+  public function getProducts()
+  {
+    $query = "SELECT * FROM products";
+    $result = $this->con->query($query);
+    if ($result->num_rows > 0) {
+      $data = array();
+      while ($row = $result->fetch_assoc()) {
+        $data[] = $row;
+      }
+      return $data;
+    } else {
+      echo "No product found";
+    }
+  }
+
+   // Fetch single data for edit from Product table
+public function getProductById($id)
+{
+  $query = "SELECT * FROM products WHERE id = '$id'";
+  $result = $this->con->query($query);
+  if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    return $row;
+  } else {
+    echo "Record not found";
+  }
+}
+
+// Update product data into products table
+public function updateProductRecord($postData)
+{
+$id = $this->con->real_escape_string($_POST['id']);
+
+$img=$_FILES['img']['name'];
+  $tempName=$_FILES['img']['tmp_name'];
+  $folder="./image/";
+  $path="./image/".$img;
+
+ 
+
+if(isset($img))
+
+{
+if($tempName!=""){
+$query = "SELECT * FROM products WHERE id = '$id'";
+$result = $this->con->query($query);
+$row = $result->fetch_assoc();
+  if($row){
+
+  $image=$row['img'];
+  unlink($folder.$image);
+  move_uploaded_file($tempName, $folder);
+  $productImage=$img;
+
+  $title = $this->con->real_escape_string($_POST['title']);
+  $des = $this->con->real_escape_string($_POST['des']);
+  $query = "UPDATE products SET title = '$title', des = '$des', img = '$productImage' WHERE id = '$id'";
+  }}
+}
+
+    $productImage=$img;
+  $title = $this->con->real_escape_string($_POST['title']);
+  $des = $this->con->real_escape_string($_POST['des']);
+   
+
+if (!empty($id) && !empty($postData)) {
+  $query = "UPDATE products SET title = '$title', des = '$des', img = '$productImage' WHERE id = '$id'";
+  $sql = $this->con->query($query);
+  if ($sql == true) {
+    move_uploaded_file($tempName, $path);
+    header("Location:index.php");
+  } else {
+    echo "Update failed try again!";
+  }
+}
+}
+
+// Delete product data from product table
+public function deleteProductData($id)
+{
+  $query = "DELETE FROM products WHERE id = '$id'";
+  $sql = $this->con->query($query);
+  if ($sql == true) {
+    header("Location:index.php?key3=delete");
+  } else {
+    echo "Record does not delete try again";
+  }
+}
 
 }
